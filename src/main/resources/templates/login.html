@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html th:replace="~{base::parent( ~{::#content},~{::title})}"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>login</title>
+</head>
+<body>
+	<section id="content">
+		<div class="container mt-5">
+			<div
+				class="card mb-3 ms-auto me-auto shadow-sm p-3 mb-5 bg-body rounded-3 border-success"
+				style="max-width: 450px; border-top-color: #0055ff; border-top-width: 25px;">
+				<div class="row g-0">
+					<div class="col-md-12">
+						<div class="card-body">
+							<h5 class="card-title">Login Here...</h5>
+							<div class="text-danger text-center" th:if="${param.error}">Invalid
+								username and password.</div>
+							<div class="text-success text-center" th:if="${param.logout}">You
+								have been logged out.</div>
+
+							<!-- Login Form -->
+							<form th:action="@{'/authenticate'}" method="post">
+								<div class="mb-3">
+									<label for="exampleInputEmail1" class="form-label">User
+										Name</label> <input type="email" class="form-control form-control-sm"
+										id="exampleInputEmail1" name="email"
+										placeholder="Enter your user name">
+								</div>
+								<div class="mb-3">
+									<label for="exampleInputPassword1" class="form-label">Password</label>
+									<input type="password" class="form-control form-control-sm"
+										id="exampleInputPassword1" name="password"
+										placeholder="Enter your password">
+								</div>
+								<div class="text-center">
+									<button type="submit" class="btn btn-primary btn-sm me-2">Submit</button>
+									<button type="reset" class="btn btn-warning btn-sm">Reset</button>
+								</div>
+
+								<!-- OAuth2 Login Options -->
+								<div class="text-center px-3 py-2 mt-3">
+									<a class="login-with-google-btn"
+										th:href="@{'/oauth2/authorization/google'}">Sign in with
+										Google</a>
+								</div>
+								<div class="mt-2 text-center">
+									<a th:href="@{'/oauth2/authorization/github'}"
+										style="background-color: #444444; color: white;"
+										class="btn btn-block btn-social btn-github"> <i
+										class="fa-brands fa-github"></i> Sign in with GitHub
+									</a>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

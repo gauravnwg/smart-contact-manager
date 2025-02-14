@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>navbar</title>
+</head>
+<body>
+
+	<nav class="navbar navbar-expand-lg navbar-light bg-light"
+		th:fragment="navbar">
+		<div class="container-fluid">
+			<a class="navbar-brand" th:href="@{/home}">Smart Contact Manager</a>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto gap-4 ms-auto mb-2 mb-lg-0">
+					<li class="nav-item"><a class="nav-link active fw-bold"
+						aria-current="page" th:href="@{/home}">Home</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/about}">About</a></li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/services}">Services</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/contact}">Contact</a></li>
+
+				</ul>
+				<div class="me-2 ">
+					<a th:href="@{'/logIn'}" type="button"
+						class="btn btn-outline-success me-3">LogIn</a>
+					<a th:href="@{'/register'}" type="button"
+						class="btn btn-outline-info">SignUp</a>
+				</div>
+
+			</div>
+		</div>
+	</nav>
+</body>
+</html>
