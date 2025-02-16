@@ -1,5 +1,5 @@
 # Stage 1: Build
-FROM maven:3.9.2-eclipse-temurin-21 AS builder  # ✅ Use a valid Maven image
+FROM maven:3.9.2-eclipse-temurin-21 AS builder  # ✅ Correct syntax
 
 # Set working directory
 WORKDIR /app
@@ -15,7 +15,7 @@ COPY src ./src
 RUN mvn clean package -DskipTests
 
 # Stage 2: Run
-FROM eclipse-temurin:21-jre-alpine  # ✅ Use a valid Java runtime
+FROM eclipse-temurin:21-jre-alpine AS runtime  # ✅ Correct syntax
 
 # Set working directory
 WORKDIR /app
