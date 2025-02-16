@@ -1,12 +1,21 @@
+# Use OpenJDK 21 with Maven
 
-FROM maven:3.9.2-eclipse-temurin-17-alpine as builder
+FROM maven:3.9.6-eclipse-temurin-21 AS build
 
-COPY ./src src/
-COPY ./pom.xml pom.xml
-
+# Copy the project files
+COPY . .
+# Build the Maven project
 RUN mvn clean package -DskipTests
 
-FROM eclipse-temurin:17-jre-alpine
-COPY --from=builder target/*.jar app.jar
-EXPOSE 8181
-CMD ["java","-jar","app.jar"]
+# Use Slim version of OpenJDK 21 for the final runtime image
+FROM eclipse-temurin:21-jdk-slim
+
+# Copy only the built JAR file from the build stage
+COPY --from=build /target/Smart-contact-manager-0.0.1-SNAPSHOT.jar Smart-contact-manager.jar
+
+# Expose application port
+EXPOSE 8080
+
+ENTRYPOINT ["java", "-jar", "Smart-contact-manager.jar"]
+
+
