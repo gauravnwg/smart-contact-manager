@@ -1,21 +1,21 @@
 # Stage 1: Build
-FROM maven:3.9.2-eclipse-temurin-21-alpine as builder
+FROM maven:3.9.2-eclipse-temurin-21 AS builder  # ✅ Use a valid Maven image
 
 # Set working directory
 WORKDIR /app
 
 # Copy the Maven project files
-COPY ./pom.xml .
+COPY pom.xml .
 RUN mvn dependency:go-offline
 
 # Copy the source code
-COPY ./src ./src
+COPY src ./src
 
 # Build the application
 RUN mvn clean package -DskipTests
 
 # Stage 2: Run
-FROM eclipse-temurin:21-jre-alpine
+FROM eclipse-temurin:21-jre-alpine  # ✅ Use a valid Java runtime
 
 # Set working directory
 WORKDIR /app
